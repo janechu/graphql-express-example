@@ -1,5 +1,5 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -9,6 +9,7 @@ const typeDefs = `#graphql
 
   # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
+    id: String
     title: String
     author: String
   }
@@ -23,12 +24,14 @@ const typeDefs = `#graphql
 
 const books = [
     {
-        title: 'The Awakening',
-        author: 'Kate Chopin',
+        id: "uuid-0",
+        title: "The Awakening",
+        author: "Kate Chopin",
     },
     {
-        title: 'City of Glass',
-        author: 'Paul Auster',
+        id: "uuid-1",
+        title: "City of Glass",
+        author: "Paul Auster",
     },
 ];
 

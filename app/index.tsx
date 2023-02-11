@@ -1,6 +1,15 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./components/app";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+/**
+ * The apollo client
+ */
+const client = new ApolloClient({
+    uri: "http://localhost:4000",
+    cache: new InMemoryCache(),
+  });
 
 /**
  * Create the root node
@@ -12,5 +21,7 @@ const root: HTMLElement = document.getElementById("root") as HTMLElement;
  */
 const reactRoot = createRoot(root);
 reactRoot.render(
-    <App />
+    <ApolloProvider client={client}>
+        <App />
+    </ApolloProvider>
 );
