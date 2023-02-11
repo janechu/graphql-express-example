@@ -2,11 +2,15 @@
   "name": "graphql-express-example",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "An example implementation of graphQL on an express server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "start:server": "node ./www/server.js",
+    "build:app": "webpack",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build": "npm run build:app && npm run build:server"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,7 @@
   "homepage": "https://github.com/janechu/graphql-express-example#readme",
   "devDependencies": {
     "@apollo/server": "^4.3.3",
+    "@types/node": "^18.13.0",
     "html-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",

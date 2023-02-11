@@ -1,0 +1,21 @@
+{
+    "include": [
+        "server/**/*",
+        "types.d.ts"
+    ],
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "www",
+        "lib": ["es2020"],
+        "target": "es2020",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "types": [
+            "node"
+        ],
+    },
+    "exclude": [
+        "node_modules",
+    ]
+  }
