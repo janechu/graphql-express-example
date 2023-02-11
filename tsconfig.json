@@ -1,0 +1,17 @@
+{
+    "include": [
+        "app/**/*",
+        "types.d.ts"
+    ],
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "dist",
+        "jsx": "react",
+        "types": [
+            "node"
+        ],
+    },
+    "exclude": [
+        "node_modules",
+    ]
+  }
