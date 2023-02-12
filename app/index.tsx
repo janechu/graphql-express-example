@@ -7,9 +7,9 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
  * The apollo client
  */
 const client = new ApolloClient({
-    uri: "http://localhost:4000",
+    uri: "http://localhost:4000/api",
     cache: new InMemoryCache(),
-  });
+});
 
 /**
  * Create the root node
