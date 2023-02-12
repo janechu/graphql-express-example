@@ -18,7 +18,7 @@ const typeDefs = `#graphql
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    books: [Book]
+    books(author: String): [Book]
   }
 `;
 
@@ -33,13 +33,29 @@ const books = [
         title: "City of Glass",
         author: "Paul Auster",
     },
+    {
+        id: "uuid-2",
+        title: "Jurassic Park",
+        author: "Michael Crichton",
+    },
+    {
+        id: "uuid-3",
+        title: "The Andromeda Strain",
+        author: "Michael Crichton",
+    }
 ];
 
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers = {
     Query: {
-        books: () => books,
+        books: (parent, args, contextValue, info) => {
+          if (args.author) {
+            return books.filter((book) => book.author.includes(args.author));
+          }
+          
+          return books;
+        },
     },
 };
 
@@ -58,4 +74,4 @@ const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 },
 });
   
-  console.log(`🚀  Server ready at: ${url}`);
+console.log(`🚀  Server ready at: ${url}`);
