@@ -1,15 +1,14 @@
 import * as React from "react";
 import { DisplayBooks } from "../display-books";
+import { AddBook, Book } from "../add-book";
 
-interface AppProps {
-
-}
-
-export function App(props: AppProps) {
+export function App() {
     return (
         <div>
-            <h1>Available Books:</h1>
+            <h2>Available Books:</h2>
             <DisplayBooks />
+            <h2>Add a book</h2>
+            <AddBook />
         </div>
     );
 }

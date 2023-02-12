@@ -20,6 +20,11 @@ const typeDefs = `#graphql
   type Query {
     books(author: String): [Book]
   }
+
+  # The "Mutation" type for write operations
+  type Mutation {
+    addBook(title: String, author: String): Book
+  }
 `;
 
 const books = [
@@ -44,6 +49,7 @@ const books = [
         author: "Michael Crichton",
     }
 ];
+let bookCount = 4;
 
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
@@ -57,6 +63,20 @@ const resolvers = {
           return books;
         },
     },
+    Mutation: {
+        addBook: (parent, args, contextValue, info) => {
+          const newBook = {
+            id: `uuid-${bookCount}`,
+            title: args.title,
+            author: args.author,
+          }
+
+          bookCount++;
+
+          books.push(newBook);
+          return newBook;
+        }
+    }
 };
 
 // The ApolloServer constructor requires two parameters: your schema

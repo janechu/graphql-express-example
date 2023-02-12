@@ -13,22 +13,30 @@ const GET_BOOKS = gql`
 `;
 
 export function DisplayBooks() {
+    let author = void 0;
     const { loading, error, data, refetch } = useQuery(GET_BOOKS);
     
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.message}</p>;
 
     function handleAuthorOnChange(updatedAuthor: string) {
-        refetch({ author: updatedAuthor });
+        author = updatedAuthor;
+        refetch({ author });
     }
 
     function handleShowAllBooks() {
-        refetch({ author: undefined });
+        author = void 0;
+        refetch({ author });
+    }
+
+    function handleRefreshBookList() {
+        refetch({ author });
     }
 
     return (
         <div>
             <button onClick={handleShowAllBooks}>Show all books</button>
+            <button onClick={handleRefreshBookList}>Refresh</button>
             <ChooseAuthor onChange={handleAuthorOnChange} />
             {data.books.map(({ id, title, author }) => (
                 <div key={id}>
